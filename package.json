@@ -1,0 +1,14 @@
+{
+  "name": "contractor-x",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 3 versions, not dead",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel serve --open",
+    "build": "parcel build"
+  },
+  "author": "ggrus",
+  "license": "ISC"
+}
