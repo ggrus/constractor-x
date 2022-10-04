@@ -1,0 +1,95 @@
+@use "sass:math";
+@use "utils";
+
+//<ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>
+@use "null";
+
+body {
+  color: utils.$primaryColor;
+  font-family: utils.$fontFamily;
+  font-weight: 400;
+  font-size: utils.$fontSize;
+
+  &._lock {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+//</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>
+
+//<ОБОЛОЧКА>
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  // Прижимаем footer
+  > main {
+    flex: 1 1 auto;
+  }
+  // Фикс для слайдеров
+  > * {
+    min-width: 0;
+  }
+}
+//</ОБОЛОЧКА>
+
+/*
+  (i) Стили будут применяться ко 
+  всем классам содержащим *__container
+  Например header__container, main__container и т.д.
+  Снипет (HTML): cnt
+  */
+@if (utils.$responsiveType==1) {
+  // Отзывчивая
+  [class*="__container"] {
+    @if (utils.$maxWidthContainer>0) {
+      max-width: utils.rem(utils.$maxWidthContainer);
+      box-sizing: content-box;
+      margin: 0 auto;
+    }
+    @if (utils.$containerPadding>0) {
+      padding: 0 utils.rem(math.div(utils.$containerPadding, 2));
+    }
+  }
+} @else {
+  // По брейк-поинтам
+  [class*="__container"] {
+    margin: 0 auto;
+    @if (utils.$maxWidthContainer>0) {
+      max-width: utils.rem(utils.$maxWidthContainer);
+      box-sizing: content-box;
+    } @else {
+      @if (utils.$containerPadding>0) {
+        padding: 0 utils.rem(math.div(utils.$containerPadding, 2));
+      }
+    }
+    @media (max-width: $pc) {
+      max-width: utils.rem(970);
+    }
+    @media (max-width: $tablet) {
+      max-width: utils.rem(750);
+    }
+    @media (max-width: $mobile) {
+      max-width: none;
+      @if (utils.$containerPadding>0 and utils.$maxWidthContainer>0) {
+        padding: 0 utils.rem(math.div(utils.$containerPadding, 2));
+      }
+    }
+  }
+}
+
+@import "ui";
+@import "header";
+
+body {
+  background-color: rgb(186, 186, 186);
+}
+
+.wrapper {
+}
+.main {
+}
+.footer {
+}
+

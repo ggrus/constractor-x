@@ -1,0 +1,76 @@
+@use "sass:math";
+@use "utils";
+
+.header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  min-height: utils.rem(100);
+  // .header__wrapper
+  &__wrapper {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 50;
+  }
+  // .header__container
+  &__container {
+  }
+  // .header__body
+  &__body {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    min-height: utils.rem(100);
+    position: relative;
+  }
+  // .header__logo
+  &__logo {
+    span {
+      font-size: 25px;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+  }
+  // .header__logo--link
+  &__logo--link {
+  }
+  // .header__nav
+  &__nav {
+  }
+  // .header__cta
+  &__cta {
+  }
+  // .header__burger
+  &__burger {}
+}
+.nav {
+  flex: 1 1 100%;
+  padding: 0px 24px;
+  justify-content: flex-end;
+  // .nav__body
+  &__body {
+    display: flex;
+    justify-content: flex-end;
+  }
+  // .nav__list
+  &__list {
+    display: flex;
+  }
+  // .nav__item
+  &__item {
+    &+.nav__item {
+      margin-left: 32px;
+    }
+  }
+  // .nav__link
+  &__link {
+    color: #ffffff;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
