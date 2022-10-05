@@ -2,75 +2,112 @@
 @use "utils";
 
 .header {
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  z-index: 5;
   top: 0;
   left: 0;
-  min-height: utils.rem(100);
-  // .header__wrapper
-  &__wrapper {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: 50;
-  }
+  width: 100%;
+  padding: utils.rem(20) 0;
   // .header__container
   &__container {
-  }
-  // .header__body
-  &__body {
     display: flex;
-    width: 100%;
     align-items: center;
-    min-height: utils.rem(100);
-    position: relative;
   }
   // .header__logo
   &__logo {
-    span {
-      font-size: 25px;
-      color: #ffffff;
-      white-space: nowrap;
+    color: #fff;
+    font-size: utils.rem(24);
+    position: relative;
+    z-index: 5;
+
+    @media (max-width: utils.$mobile){
+      width: 32px;
+      overflow: hidden;
     }
   }
-  // .header__logo--link
-  &__logo--link {
+  // .header__menu
+  &__menu {
+    flex: 1 1 auto;
   }
-  // .header__nav
-  &__nav {
+  // .header__action
+  &__action {
+    position: relative;
+    z-index: 5;
   }
-  // .header__cta
-  &__cta {
+  // .header__hamburger
+  &__hamburger {
+    margin-left: utils.rem(24);
+
+    @media (min-width: utils.$mobile){
+      display: none;
+    }
   }
-  // .header__burger
-  &__burger {}
 }
-.nav {
-  flex: 1 1 100%;
-  padding: 0px 24px;
-  justify-content: flex-end;
-  // .nav__body
+.menu {
+  padding: 0 utils.rem(24);
+  // .menu__body
   &__body {
-    display: flex;
-    justify-content: flex-end;
+    @media (max-width:utils.$mobile){
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: -100%;
+      transition: left 0.3s ease;
+      overflow: auto;
+      background-color: rgb(242, 147, 147);
+      padding: utils.rem(100) utils.rem(15) utils.rem(30) utils.rem(15);
+
+      &::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: -100%;
+        transition: left 0.3s ease;
+        width: 100%;
+        height: 100px;
+        background-color: rgb(231, 59, 59);
+        z-index: 2;
+      }
+
+      .menu--open & {
+        &,
+        &::before {
+          left: 0;
+        }
+      }
+    }
   }
-  // .nav__list
+  // .menu__list
   &__list {
     display: flex;
-  }
-  // .nav__item
-  &__item {
-    &+.nav__item {
-      margin-left: 32px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 34px;
+    row-gap: 10px;
+
+    @media (max-width: utils.$mobile){
+      flex-direction: column;
+      text-align: center;
+      row-gap: 22px;
     }
   }
-  // .nav__link
+  // .menu__item
+  &__item {
+  }
+  // .menu__link
   &__link {
-    color: #ffffff;
+    color: #fff;
 
     &:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: utils.$mobile){
+      font-size: utils.rem(30);
+    }
   }
 }
+
+

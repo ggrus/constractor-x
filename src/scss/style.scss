@@ -93,3 +93,48 @@ body {
 .footer {
 }
 
+.main {
+  height: 100vh;
+  position: relative;
+  // .main__bg
+  &__bg {
+    & img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: bottom center;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  // .main__container
+  &__container {
+    height: 100%;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  // .main__title
+  &__title {
+  }
+  // .main__text
+  &__text {
+  }
+  // .main__actions
+  &__actions {
+  }
+}
